@@ -23,7 +23,6 @@ def processText(text):
     text = text.lower()
     text = re.sub('((www.[^s]+)|(https?://[^s]+))','',text)
     text = re.sub('@[^s]+','',text)
-    text = re.sub('[s]+', ' ', text)
     text = re.sub(r'#([^s]+)', r'1', text)
     return text
  

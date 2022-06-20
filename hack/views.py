@@ -60,7 +60,7 @@ def text_form(request):
             elif y_pred==1:
                 args['conclusion'] = 'Negative'
             elif y_pred==0:
-                args['conclusion'] = 'Neutral'
+                args['conclusion'] = 'Assertive'
 
     else:
         form = TextForm()

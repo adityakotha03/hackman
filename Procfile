@@ -1,1 +1,1 @@
-web: gunicorn hackman.wsgi 
+web: gunicorn hackman.wsgi --log-file -

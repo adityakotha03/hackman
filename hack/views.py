@@ -52,14 +52,14 @@ def text_form(request):
             print(y_pred_probability)
             args['first'] = 0
             args['text'] = text
-            args['neutral'] = math.floor((y_pred_probability[0][0])*100)
-            args['negative'] = math.floor((y_pred_probability[0][1])*100)
+            args['negative'] = math.floor((y_pred_probability[0][0])*100)
+            args['neutral'] = math.floor((y_pred_probability[0][1])*100)
             args['positive'] = math.ceil((y_pred_probability[0][2])*100)
             if y_pred==2:
                 args['conclusion'] = 'Positive'
-            elif y_pred==1:
-                args['conclusion'] = 'Negative'
             elif y_pred==0:
+                args['conclusion'] = 'Negative'
+            elif y_pred==1:
                 args['conclusion'] = 'Assertive'
 
     else:

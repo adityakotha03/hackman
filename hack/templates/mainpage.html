@@ -14,8 +14,9 @@
       <div class="w-full container mx-auto">
         <div class="w-full flex items-center justify-between">
           <a class="flex items-center text-indigo-400 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
-            Social Media Analyzer</span>
+            RTracker</span>
           </a>
+        
 
           <div class="flex w-1/2 justify-end content-center">
             <a class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out" href="https://twitter.com/intent/tweet?url=#">
@@ -25,16 +26,17 @@
                 ></path>
               </svg>
             </a>
-            <a
-              class="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
-              href="https://www.facebook.com/sharer/sharer.php?u=#"
-            >
-              <svg class="fill-current h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path>
-              </svg>
-            </a>
           </div>
         </div>
+        <a class=" no-underline hover:text-pink-500 font-bold text-sm lg:text-xl" href="textformproducts">
+          Products</span>
+        </a>
+        <a class="no-underline font-bold text-sm lg:text-xl" href="#">
+          &</span>
+        </a>
+        <a class="no-underline hover:text-pink-500 font-bold text-sm lg:text-xl" href="textformhandles">
+          Handles</span>
+        </a>
       </div>
 
       <!--Main-->
@@ -44,19 +46,19 @@
           <h1 class="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
             Sentiment Analysis of  
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
-              Social Media
+              Topics and Trends
             </span>
-            posts
+            from Twitter
           </h1>
           <p class="leading-normal text-base md:text-2xl mb-8 text-center md:text-left">
-            Works with all text posts on Facebook, Instagram, Twitter and more ...
+            Works by analyzing tweets from twitter feed ...
           </p>
           
           <form class="bg-gray-900 opacity-75 w-full shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4" method="POST">
             {% csrf_token %}
             <div class="mb-4">
               <label class="block text-blue-300 py-2 font-bold mb-2" for="emailaddress">
-                Enter the text from the Social Media post here
+                Enter the Keyword/s you want to search here
               </label>
               {{ form }}
             </div>
@@ -94,28 +96,30 @@
             <div class="py-4 mb-4">
               <h1 class="my-4 text-3xl md:text-4xl text-white opacity-80 font-bold leading-tight text-center md:text-center">Results</h1>
               <div class="flex justify-between mb-2">
-                <span class="text-base font-bold text-green-700 dark:text-white">Postivity in the Text</span>
+                <span class="text-base font-bold text-green-700 dark:text-white">Postivity in the Tweets</span>
                 <span class="text-sm font-bold text-green-700 dark:text-white">{{ positive }}</span></div>
               <div class="w-full mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
                 <div class="bg-green-600 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-full " style="width: {{ positive }}%"> {{ positive }}</div>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-base font-bold text-red-700 dark:text-white">Negitivity in the Text</span>
+                <span class="text-base font-bold text-red-700 dark:text-white">Negitivity in the Tweets</span>
                 <span class="text-sm font-bold text-red-700 dark:text-white">{{ negative }}</span></div>
               <div class="w-full mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
                 <div class="bg-red-600 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-full" style="width: {{ negative }}%"> {{ negative }}</div>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-base font-bold text-purple-700 dark:text-white">Assertiveness in the Text</span>
+                <span class="text-base font-bold text-purple-700 dark:text-white">Assertiveness in the Tweets</span>
                 <span class="text-sm font-bold text-purple-700 dark:text-white">{{ neutral }}</span></div>
               <div class="w-full mb-4 bg-gray-200 rounded-full dark:bg-gray-700">
                 <div class="bg-indigo-600 text-xs font-medium text-blue-100 text-center p-1 leading-none rounded-full" style="width: {{ neutral }}%"> {{ neutral }}</div>
               </div>
               <div class = "pt-4">
                 {% if first == 1 %}
-                <h1 class="my-4 text-2xl md:text-2xl text-white opacity-100 font-bold leading-tight text-center md:text-left ">Please Enter the Text </h1>
+                <h1 class="my-4 text-2xl md:text-2xl text-white opacity-100 font-bold leading-tight text-center md:text-left ">Please Enter the Keyword </h1>
+                {% elif first == 2 %}
+                <h1 class="my-4 text-2xl md:text-2xl text-red-700 opacity-100 font-bold leading-tight text-center md:text-left ">No Topic Found </h1>
                 {% else %}
-                <h1 class="my-4 text-2xl md:text-2xl text-white opacity-100 font-bold leading-tight text-center md:text-left ">The Text Seems to be 
+                <h1 class="my-4 text-2xl md:text-2xl text-white opacity-100 font-bold leading-tight text-center md:text-left ">The Topic or Trend Seems to be 
                   <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">{{ conclusion }}</span></h1>
                 {% endif %}
                 
